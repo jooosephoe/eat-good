@@ -1,0 +1,11 @@
+# Virtual environment
+virtualenv/
+
+# Python files
+*.pyc
+__pycache__/
+
+# Other
+.DS_Store
+.idea/
+.vscode/
