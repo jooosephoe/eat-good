@@ -9,6 +9,12 @@ def get_api_secret_key():
 
     return api_key
 
+def get_db_url():
+    load_dotenv()
+    db_url = os.getenv("DB_URL")
+
+    return db_url
+
 def connect_to_db():
     load_dotenv()
     db_password = os.getenv("DB_PASSWORD")
