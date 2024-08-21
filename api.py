@@ -10,8 +10,8 @@ from functools import wraps
 app = Flask(__name__)
 secret_key = other.get_api_secret_key
 app.config["SECRET_KEY"] = secret_key
-
-db = other.connect_to_db()
+db_url = other.get_db_url()
+app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 
 def token_required(f):
     @wraps(f)
@@ -29,7 +29,7 @@ def token_required(f):
             # Fix this later
             current_user = None
         except:
-            return jsonify({"message": "Token is invalud"}), 401
+            return jsonify({"message": "Token is invalid"}), 401
         
         return f(current_user, *args, **kwargs)
     
