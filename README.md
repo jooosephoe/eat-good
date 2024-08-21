@@ -45,32 +45,22 @@ User can add to daily tracker of what they eat
 
 ### Database
 
-User {
-    id integer PK,
-    public_id string UNIQUE,
-    name string,
-    age integer,
-    height integer,
-    weight integer,
-    admin boolean
-}
+users: id integer PK, public_id string(50), name string(50), password string(80), height integer, weight integer, age integer, gender string(1), activity_level string(1), admin boolean
 
-UserPreferences {
-    user_id integer PK FK,
-    goals char,
-    dietary_preferences string
-}
+> public_id will be hex-generated uuid, gender will be m or f, activity level will be s (sedentary) or l (light exercise 1-2x/week) or m (moderate exercise 3-5x/week) or h (heavy exercise 7x/week) or a (athlete 2x/day)
 
-Allergies {
-    id integer PK,
-    user_id integer FK,
-    allergy string
-}
+user_health: id integer PK, user_id integer FK ref users.id, tdee integer, calorie_goal string(1), dietary_pref string(20)
 
-Cart {
+> tdee will be the number of calories, calorie_goal will be either c (cut) or m (maintenance) or b (bulk), dietary_pref will be describing dietary preferences such as vegan, vegetarian, etc.
 
-}
+allergies: id integer, user_id integer FK ref users.id, allergy String(25)
 
-DailyExpenditure {
+cart: id integer, user_id integer FK ref users.id
 
-}
+cart_item: id integer, cart_id integer FK ref cart.id, item string(50)
+
+tracker: id integer, user_id integer FK ref users.id
+
+tracker_item: id integer, tracker_id integer FK ref tracker.id, item string(50), meal string(1), serving_type string(2), serving_amount integer
+
+> meal will be b (breakfast) or l (lunch) or d (dinner) or s (snack), serving_type will describe unit either g (grams) or ml (mililitres) etc, serving_amount will be the number for that unit

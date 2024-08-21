@@ -12,8 +12,8 @@ class User(db.Model):
     height = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Integer, nullable=False)
     age = db.Column(db.Integer, nullable=False)
-    gender = db.Column(db.CHAR(1), nullable=False)
-    activity_level = db.Column(db.CHAR(1), nullable=False)
+    gender = db.Column(db.String(1), nullable=False)
+    activity_level = db.Column(db.String(1), nullable=False)
     admin = db.Column(db.Boolean, nullable=False)
 
 class UserHealth(db.Model):
@@ -22,7 +22,7 @@ class UserHealth(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     tdee = db.Column(db.Integer)
-    calorie_goal = db.Column(db.CHAR(1))
+    calorie_goal = db.Column(db.String(1))
     dietary_pref = db.Column(db.String(20))
 
     user = db.relationship("User", backref="user_health")
@@ -67,6 +67,6 @@ class TrackerItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     tracker_id = db.Column(db.Integer, db.ForeignKey("tracker.id"), nullable=False)
     item = db.Column(db.String(50))
-    meal = db.Column(db.CHAR(1))
-    serving_type = db.Column(db.CHAR(1))
+    meal = db.Column(db.String(1))
+    serving_type = db.Column(db.String(2))
     serving_amount = db.Column(db.Integer)
