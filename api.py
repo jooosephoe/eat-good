@@ -26,6 +26,7 @@ def token_required(f):
         
         try:
             data = jwt.decode(token, secret_key)
+            # Fix this later
             current_user = None
         except:
             return jsonify({"message": "Token is invalud"}), 401
