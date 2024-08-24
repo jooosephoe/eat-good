@@ -15,6 +15,7 @@ def get_db_url():
 
     return db_url
 
+"""
 def connect_to_db():
     load_dotenv()
     db_password = os.getenv("DB_PASSWORD")
@@ -22,3 +23,4 @@ def connect_to_db():
     db = cluster["eat-good"]
 
     return db
+"""
